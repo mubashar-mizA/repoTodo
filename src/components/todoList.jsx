@@ -12,8 +12,8 @@ const TodoList = () => {
     return (
         <div className="bg-teal-50 text-black min-h-screen p-6">
             <div className="text-center mb-8 flex items-center justify-center gap-10 bg-gradient-to-b from-teal-600 to-teal-800 p-3">
-                <h1 className=" text-white text-3xl font-bold">Todo List</h1>
-                <Link to="/" className="text-lg text-yellow-300 hover:underline transition duration-300">Back to Home</Link>
+                <h1 className=" text-white md:text-3xl text-xl font-bold">Todo List</h1>
+                <Link to="/" className="md:text-lg text-sm  text-yellow-300 hover:underline transition duration-300">Back to Home</Link>
             </div>
 
             {todos.length > 0 ? (
