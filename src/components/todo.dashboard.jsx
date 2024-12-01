@@ -30,7 +30,7 @@ const TodoDashboard = () => {
                 <nav className="w-1/5 p-4 bg-rose-400 min-h-screen">
                     <ul className="flex flex-col">
                         <Link to="/todo-dashboard/todo-list" className="text-xl">All Todos</Link>
-                        <Link className="text-xl">Deleted Todos</Link>
+                        <Link to='/todo-dashboard/todo-deleted' className="text-xl">Deleted Todos</Link>
                         <Link className="text-xl">Completed Todos</Link>
                     </ul>
                 </nav>
