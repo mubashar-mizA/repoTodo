@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 const TodoDashboard = () => {
     const [todoTitle, setTodoTitle] = useState('');
@@ -8,79 +8,66 @@ const TodoDashboard = () => {
 
     const handleNewTodo = () => {
         const newTodo = { title: todoTitle, content: todoContent };
-
-        // LocalStorage se todos ko retrieve karein
         const existingTodos = JSON.parse(localStorage.getItem("todos")) || [];
-
-        // Naya todo add karein
         existingTodos.push(newTodo);
-
-        // Updated list ko localStorage mein save karein
         localStorage.setItem("todos", JSON.stringify(existingTodos));
-
-        // Fields ko clear karein
         setTodoTitle('');
         setTodoContent('');
         setAddTodo(false);
     };
 
     return (
-        <div className="bg-black text-white mx-auto min-h-screen relative">
+        <div className="bg-gradient-to-r text-white min-h-screen">
             <div className="flex">
-                <nav className="w-1/5 p-4 bg-rose-400 min-h-screen">
-                    <ul className="flex flex-col">
-                        <Link to="/todo-dashboard/todo-list" className="text-xl">All Todos</Link>
-                        <Link to='/todo-dashboard/todo-deleted' className="text-xl">Deleted Todos</Link>
-                        <Link className="text-xl">Completed Todos</Link>
+                <nav className="w-1/5 p-2 bg-gradient-to-b from-teal-600 to-teal-800">
+                    <ul className="flex flex-col space-y-1">
+                        <Link to="/todo-dashboard/todo-list" className="text-lg text-gray-200 hover:text-yellow-300 transition duration-300">All Todos</Link>
+                        <Link to='/todo-dashboard/todo-deleted' className="text-lg text-gray-200 hover:text-yellow-300 transition duration-300">Deleted Todos</Link>
+                        <Link className="text-lg text-gray-200 hover:text-yellow-300 transition duration-300">Completed Todos</Link>
                     </ul>
                 </nav>
+
                 {addTodo ? (
-                    <div className="flex min-h-screen w-full">
-                        <div className="bg-green-400 w-full flex justify-center min-h-screen items-center">
-                            <div className="w-8/12">
-                                <div>
-                                    <input
-                                        type="text"
-                                        placeholder="Todo Title"
-                                        className="w-full border px-2 py-4 outline-none placeholder:text-black text-black"
-                                        value={todoTitle}
-                                        onChange={(e) => setTodoTitle(e.target.value)}
-                                    />
-                                </div>
-                                <div>
-                                    <textarea
-                                        placeholder="Todo Content"
-                                        className="w-full p-2 outline-none placeholder:text-black text-black"
-                                        rows={10}
-                                        value={todoContent}
-                                        onChange={(e) => setTodoContent(e.target.value)}
-                                    ></textarea>
-                                </div>
-                                <div>
-                                    <button
-                                        className="w-full p-2 border"
-                                        onClick={handleNewTodo}
-                                    >
-                                        Add to list
-                                    </button>
-                                </div>
-                            </div>
+                    <div className="flex min-h-screen w-full justify-center items-center bg-teal-50">
+                        <div className="w-9/12 bg-white p-6 rounded-lg shadow-lg">
+                            <input
+                                type="text"
+                                autoFocus
+                                placeholder="Todo Title"
+                                className="w-full p-2 mb-2 outline-none border-b placeholder:text-black text-black"
+                                value={todoTitle}
+                                onChange={(e) => setTodoTitle(e.target.value)}
+                            />
+                            <textarea
+                                placeholder="Todo Content"
+                                className="w-full p-2 mb-2 outline-none text-black placeholder:text-black"
+                                rows={8}
+                                value={todoContent}
+                                onChange={(e) => setTodoContent(e.target.value)}
+                            />
+                            <button
+                                className="w-full py-3 bg-teal-600 text-white font-semibold  shadow-md hover:bg-teal-500 transition duration-300"
+                                onClick={handleNewTodo}
+                            >
+                                Add Todo
+                            </button>
                         </div>
                     </div>
                 ) : (
-                    <div className="min-h-screen flex items-center justify-center w-full">
-                        Please click on plus to add todo
+                    <div className="min-h-screen flex items-center justify-center text-lg text-gray-800 w-full bg-teal-50">
+                        Please click on plus to add a todo
                     </div>
                 )}
             </div>
+
             {!addTodo && (
-                <div>
-                    <div
-                        className="absolute bottom-28 right-20 text-4xl hover:cursor-pointer"
+                <div className="absolute bottom-20 right-10">
+                    <button
+                        className="text-5xl text-black hover:text-yellow-300 transition duration-300"
                         onClick={() => setAddTodo((prev) => !prev)}
                     >
                         +
-                    </div>
+                    </button>
                 </div>
             )}
         </div>
