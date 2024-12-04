@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Landing = () => {
     const [showNote, setShowNote] = useState(false)
     return (
-        <div className=" bg-gradient-to-b from-teal-600 to-teal-800 text-white min-h-screen w-full flex items-center justify-center relative">
+        <div className=" bg-gradient-to-b from-teal-600 to-teal-800 text-white min-h-screen w-full flex items-center justify-between p-4 flex-col relative">
             <div className="text-center h-max w-full p-2">
                 <h1 className="md:text-5xl text-2xl font-bold text-yellow-300 my-2">
                     Make Every Day Count!
@@ -34,14 +34,20 @@ const Landing = () => {
                     <p className="md:p-2 px-3">At the moment, all your todos are stored locally in your browser's storage, which means they are only accessible on this device. I am currently working on a feature to sync your todos with cloud storage, allowing you to securely store and access them from any device, anywhere. In addition, I am also working on adding a login functionality to ensure that your todos are tied to your account, making them even more accessible and secure. This upgrade will provide you with a more flexible and seamless experience.</p>
                 </div> : ''
             }
-            <div className="absolute md:bottom-20 bottom-4 md:right-20 right-5 md:text-2xl text-sm border rounded-full md:p-2 p-3 hover:cursor-pointer"
+            <div className="absolute md:bottom-20 bottom-4 md:right-20 right-5 md:text-xl text-sm border rounded-full md:p-2 p-3 hover:cursor-pointer"
                 onClick={
                     () => {
                         setShowNote((preVal) => !preVal)
                     }
                 }
-            >info</div>
+                >
+                    info</div>
+
+                <div>
+                    <h1>Developed and maintained by <b>Mubasahr Siddique</b></h1>
+                </div>
         </div>
+
     );
 };
 
