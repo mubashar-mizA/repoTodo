@@ -31,7 +31,7 @@ const Landing = () => {
                         }
                     >Close</div>
                     <h2 className="md:text-3xl md:p-2 p-3 font-bold">Please note that!</h2>
-                    <p className="md:p-2 px-3">At the moment, all your todos are stored locally in your browser's storage, which means they are only accessible on this device. I am currently working on a feature to sync your todos with cloud storage, allowing you to securely store and access them from any device, anywhere. In addition, I am also working on adding a login functionality to ensure that your todos are tied to your account, making them even more accessible and secure. This upgrade will provide you with a more flexible and seamless experience.</p>
+                    <p className="md:p-2 px-3">At the moment, all your todos are managed using Redux Toolkit (RTK), which provides a more efficient state management solution compared to local storage. This ensures that your todos are stored in a global state and can be easily accessed and updated across the app. I am currently working on a feature to sync your todos with cloud storage, allowing you to securely store and access them from any device, anywhere. In addition, I am also working on adding a login functionality to ensure that your todos are tied to your account, making them even more accessible and secure. This upgrade will provide you with a more flexible and seamless experience.</p>
                 </div> : ''
             }
             <div className="absolute md:bottom-20 bottom-4 md:right-20 right-5 md:text-xl text-sm border rounded-full md:p-2 p-3 hover:cursor-pointer"
@@ -40,12 +40,12 @@ const Landing = () => {
                         setShowNote((preVal) => !preVal)
                     }
                 }
-                >
-                    info</div>
+            >
+                info</div>
 
-                <div>
-                    <h1>Developed and maintained by <b>Mubasahr Siddique</b></h1>
-                </div>
+            <div>
+                <h1>Developed and maintained by <b>Mubasahr Siddique</b></h1>
+            </div>
         </div>
 
     );
