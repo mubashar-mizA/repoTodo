@@ -1,13 +1,8 @@
-import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const TodoList = () => {
-    const [todos, setTodos] = useState([]);
-
-    useEffect(() => {
-        const savedTodos = JSON.parse(localStorage.getItem("todos")) || [];
-        setTodos(savedTodos);
-    }, []);
+    const todos = useSelector(state => state.todos.todos); // Fetch todos from Redux store
 
     return (
         <div className="bg-teal-50 text-black min-h-screen p-6">
@@ -25,12 +20,7 @@ const TodoList = () => {
                             <button
                                 className="text-red-500 hover:text-red-700 transition duration-300 mt-2"
                                 onClick={() => {
-                                    const deletedTodo = todos.filter((_, i) => i === index);
-                                    const remainingTodos = todos.filter((_, i) => i !== index);
-                                    const previousDeleted = JSON.parse(localStorage.getItem("deleted")) || [];
-                                    localStorage.setItem("deleted", JSON.stringify([...previousDeleted, ...deletedTodo]));
-                                    setTodos(remainingTodos);
-                                    localStorage.setItem("todos", JSON.stringify(remainingTodos));
+                                    // Handle todo deletion here if needed
                                 }}
                             >
                                 Delete
