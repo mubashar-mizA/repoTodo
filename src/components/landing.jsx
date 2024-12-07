@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Landing = () => {
     const [showNote, setShowNote] = useState(false)
     return (
-        <div className=" bg-gradient-to-b from-teal-600 to-teal-800 text-white min-h-screen w-full flex items-center justify-between p-4 flex-col relative">
+        <div className="bg-gradient-to-b from-teal-600 to-teal-800 text-white min-h-screen w-full flex items-center justify-between p-4 flex-col relative">
             <div className="text-center h-max w-full p-2">
                 <h1 className="md:text-5xl text-2xl font-bold text-yellow-300 my-2">
                     Make Every Day Count!
