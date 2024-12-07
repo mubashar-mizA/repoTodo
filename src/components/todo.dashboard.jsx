@@ -1,21 +1,20 @@
-// TodoDashboard.js
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { todoAdd } from "../features/todoslice.js"; // Importing the todoAdd action
+import { addTodoAsync } from "..//features/todo.slice.js"; // Importing the async thunk
 import { Link } from "react-router-dom";
 
 const TodoDashboard = () => {
-  const [todoTitle, setTodoTitle] = useState('');
-  const [todoContent, setTodoContent] = useState('');
+  const [todoTitle, setTodoTitle] = useState("");
+  const [todoContent, setTodoContent] = useState("");
   const [addTodo, setAddTodo] = useState(false);
-  const todos = useSelector(state => state.todos.todos); // Access todos from Redux store
+  const { todos, loading, error } = useSelector((state) => state.todos); // Access todos and status from Redux store
   const dispatch = useDispatch();
 
   const handleNewTodo = () => {
-    const newTodo = { id: Date.now(), title: todoTitle, content: todoContent };
-    dispatch(todoAdd(newTodo)); // Dispatching action to add todo
-    setTodoTitle('');
-    setTodoContent('');
+    const newTodo = { todoTitle, todoContent };
+    dispatch(addTodoAsync(newTodo)); // Dispatching the thunk action
+    setTodoTitle("");
+    setTodoContent("");
     setAddTodo(false);
   };
 
@@ -24,9 +23,21 @@ const TodoDashboard = () => {
       <div className="flex">
         <nav className="md:w-1/5 w-full p-4 bg-gradient-to-b from-teal-600 to-teal-800">
           <ul className="flex flex-col space-y-4 text-white">
-            <Link to="/todo-dashboard/todo-list" className="text-lg text-gray-200 hover:text-yellow-300 transition duration-300">All Todos</Link>
-            <Link to='/todo-dashboard/todo-deleted' className="text-lg text-gray-200 hover:text-yellow-300 transition duration-300">Deleted Todos</Link>
-            <Link className="text-lg text-gray-200 hover:text-yellow-300 transition duration-300">Completed Todos</Link>
+            <Link
+              to="/todo-dashboard/todo-list"
+              className="text-lg text-gray-200 hover:text-yellow-300 transition duration-300"
+            >
+              All Todos
+            </Link>
+            <Link
+              to="/todo-dashboard/todo-deleted"
+              className="text-lg text-gray-200 hover:text-yellow-300 transition duration-300"
+            >
+              Deleted Todos
+            </Link>
+            <Link className="text-lg text-gray-200 hover:text-yellow-300 transition duration-300">
+              Completed Todos
+            </Link>
           </ul>
         </nav>
 
@@ -52,14 +63,19 @@ const TodoDashboard = () => {
               <button
                 className="w-full py-3 bg-teal-600 text-white font-semibold shadow-md hover:bg-teal-500 transition duration-300"
                 onClick={handleNewTodo}
+                disabled={loading}
               >
-                Add Todo
+                {loading ? "Adding..." : "Add Todo"}
               </button>
             </div>
           </div>
         ) : (
           <div className="min-h-screen flex items-center justify-center text-lg text-gray-800 w-full bg-teal-50 absolute md:static right-0 left-0">
-            <p className="p-4 md:p-0">Please click on plus to add a todo</p>
+            {error ? (
+              <p className="text-red-500">{error}</p>
+            ) : (
+              <p className="p-4 md:p-0">Please click on plus to add a todo</p>
+            )}
           </div>
         )}
       </div>
